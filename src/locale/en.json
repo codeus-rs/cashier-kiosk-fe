@@ -1,0 +1,30 @@
+{
+    "translation": {
+        "pages": {
+            "login": {
+                "title": "Login"
+            },
+            "forgotPassword": {
+                "title": "Forgot password"
+            },
+            "productManagement": {
+                "title": "Product Management"
+            },
+            "kioskManagement": {
+                "title": "Kiosk Management"
+            },
+            "userManagement": {
+                "title": "User Management"
+            },
+            "orders": {
+                "title": "Orders"
+            },
+            "reports": {
+                "title": "Reports"
+            },
+            "exports": {
+                "title": "Exports"
+            }
+        }
+    }
+}
