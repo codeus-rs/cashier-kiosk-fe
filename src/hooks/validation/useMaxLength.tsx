@@ -1,6 +1,10 @@
-const useMaxLength = (value: any, maxLength: number, message?: string): string => {
+import { useTranslation } from 'react-i18next';
+
+const useMaxLength = (value: string, maxLength: number, message?: string): string => {
+    const { t } = useTranslation();
+
     if (value && value?.length > maxLength) {
-        return message ?? `Text needs to have less than ${maxLength} characters`;
+        return message ?? `${t('validation.maxLength')} ${maxLength} ${t('validation.charactersLong')}`;
     }
     return '';
 };

@@ -1,4 +1,4 @@
-import { Navigate, RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 import Typography from '@/pages/typography';
 import Login from '@/pages/login';
 import ForgotPassword from '@/pages/forgotPassword';
@@ -8,8 +8,11 @@ import KioskManagement from '@/pages/kioskManagement';
 import Orders from '@/pages/orders';
 import Reports from '@/pages/reports';
 import Exports from '@/pages/exports';
+import Dashboard from '@/pages/dashboard';
+import NotFound from '@/pages/notFound';
 
 const protectedRoutes: RouteObject[] = [
+    { path: '/', element: <Dashboard /> },
     { path: '/product-management', element: <ProductManagement /> },
     { path: '/user-management', element: <UserManagement /> },
     { path: '/kiosk-management', element: <KioskManagement /> },
@@ -21,7 +24,7 @@ const protectedRoutes: RouteObject[] = [
 const publicRoutes: RouteObject[] = [
     { path: '/login', element: <Login /> },
     { path: '/forgot-password', element: <ForgotPassword /> },
-    { path: '/', element: <Navigate to="/typography" /> },
+    { path: '*', element: <NotFound /> },
 ];
 
 const commonRoutes: RouteObject[] = [{ path: '/typography', element: <Typography /> }];

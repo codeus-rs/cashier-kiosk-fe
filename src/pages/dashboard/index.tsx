@@ -1,13 +1,13 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const ForgotPassword: FunctionComponent = () => {
+const Dashboard: FunctionComponent = () => {
     const { t } = useTranslation();
 
     return (
         <div>
-            <h1>{t('pages.forgotPassword.title')}</h1>
+            <h1>{t('pages.dashboard.title')}</h1>
         </div>
     );
 };
-export default ForgotPassword;
+export default Dashboard;

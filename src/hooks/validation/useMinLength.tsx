@@ -1,6 +1,10 @@
-const useMinLength = (value: any, minLength: number, message?: string): string => {
+import { useTranslation } from 'react-i18next';
+
+const useMinLength = (value: string, minLength: number, message?: string): string => {
+    const { t } = useTranslation();
+
     if (!value || value?.length < minLength) {
-        return message ?? `Text needs to be at least ${minLength} characters long`;
+        return message ?? ` ${t('validation.minLength')} ${minLength} ${t('validation.charactersLong')}`;
     }
     return '';
 };
