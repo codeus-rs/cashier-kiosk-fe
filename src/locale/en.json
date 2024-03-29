@@ -1,8 +1,16 @@
 {
     "translation": {
         "pages": {
+            "dashboard": {
+                "title": "Dashboard"
+            },
             "login": {
-                "title": "Login"
+                "title": "Login",
+                "form": {
+                    "email": "Email",
+                    "password": "Password",
+                    "button": "Login"
+                }
             },
             "forgotPassword": {
                 "title": "Forgot password"
@@ -24,7 +32,19 @@
             },
             "exports": {
                 "title": "Exports"
+            },
+            "notFound": {
+                "title": "Not Found!"
             }
+        },
+        "validation": {
+            "email": "Email is not valid",
+            "number": "Entered value is not an number",
+            "maxLength": "Text needs to have less than",
+            "charactersLong": "characters long",
+            "maxValue": "Number needs to be at less than",
+            "minLength": "Text needs to be at least",
+            "minValue": "Number needs to be more than"
         }
     }
 }
