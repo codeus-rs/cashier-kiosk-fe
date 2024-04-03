@@ -1,11 +1,21 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent } from 'react';
+import { Outlet } from 'react-router-dom';
+import { useStore } from '@/store';
+import Navbar from '@/components/navbar';
 
-type Props = {
-    children: ReactNode;
-};
+const MainLayout: FunctionComponent = () => {
+    const accessToken = useStore((store) => store.accessToken);
 
-const MainLayout: FunctionComponent<Props> = ({ children }) => {
-    return <div>{children}</div>;
+    const userIsLoggedIn = !!accessToken;
+
+    return (
+        <>
+            <Navbar />
+            <div className={`content ${!userIsLoggedIn ? 'protected' : 'public'}`}>
+                <Outlet />
+            </div>
+        </>
+    );
 };
 
 export default MainLayout;
