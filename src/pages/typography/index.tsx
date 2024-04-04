@@ -207,7 +207,7 @@ const Typography: FunctionComponent = () => {
 
 const StyledTemplatePage = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     margin: 1rem;
     gap: 1rem;
 `;

@@ -15,6 +15,9 @@
             "forgotPassword": {
                 "title": "Forgot password"
             },
+            "myProfile": {
+                "title": "My profile"
+            },
             "productManagement": {
                 "title": "Product Management"
             },

@@ -1,0 +1,22 @@
+
+$primary:  #000;
+$secondary: #ffffff;
+$error: #D32F2F;
+$warning:#ED6C02;
+$gray: #E6E6E6;
+$darkGray:#6B7280;
+
+$colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "error": $error,
+    "warning": $warning,
+    "gray": $gray,
+    "darkGray": $darkGray,
+  );
+  
+  :export {
+    @each $color, $value in $colors {
+      #{(unquote($color))}: $value;
+    }
+  }

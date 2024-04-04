@@ -10,12 +10,14 @@ import Reports from '@/pages/reports';
 import Exports from '@/pages/exports';
 import Dashboard from '@/pages/dashboard';
 import NotFound from '@/pages/notFound';
+import MyProfile from '@/pages/myProfile';
 
 const protectedRoutes: RouteObject[] = [
     { path: '/', element: <Dashboard /> },
     { path: '/product-management', element: <ProductManagement /> },
     { path: '/user-management', element: <UserManagement /> },
     { path: '/kiosk-management', element: <KioskManagement /> },
+    { path: '/my-profile', element: <MyProfile /> },
     { path: '/orders', element: <Orders /> },
     { path: '/reports', element: <Reports /> },
     { path: '/exports', element: <Exports /> },
