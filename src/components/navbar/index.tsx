@@ -1,14 +1,14 @@
 import { FunctionComponent } from 'react';
-import useGlobalState from '@/store/global';
+import useGlobalStore from '@/store/global';
 import VerticalNavbar from './vertical';
 import HorizontalNavbar from './horizontal';
 import { StyledNavbar } from './style';
 
 const Navbar: FunctionComponent = () => {
-    const { isNavMenuVisible } = useGlobalState();
+    const { isNavbarCollapsed } = useGlobalStore();
 
     return (
-        <StyledNavbar className={`navbar ${isNavMenuVisible ? 'visible' : 'hidden'}`.trim()}>
+        <StyledNavbar className={`navbar ${isNavbarCollapsed ? 'collapsed' : ''}`.trim()}>
             <VerticalNavbar className="vertical-navbar" />
             <HorizontalNavbar className="horizontal-navbar" />
         </StyledNavbar>

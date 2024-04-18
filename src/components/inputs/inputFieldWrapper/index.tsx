@@ -10,6 +10,7 @@ export type BaseInputProps = {
     label?: string;
     errorMessage?: string;
     helperText?: string;
+    icon?: any;
 };
 
 type Props = BaseInputProps & { children: ReactNode };
@@ -30,12 +31,18 @@ const Input: FunctionComponent<Props> = ({ errorMessage, helperText, label, chil
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    margin-bottom: 1.5rem;
+    label {
+        color: ${(props) => props.theme.palette.gray};
+        font-size: 0.625rem;
+        margin-bottom: 0.62rem;
+    }
 `;
 
 const Message = styled.div`
     font-size: 0.75rem;
     font-weight: 500;
-    padding-left: 0.3rem;
+    margin-top: 0.313rem;
 `;
 
 const StyledErrorMessage = styled(Message)`

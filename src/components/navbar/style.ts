@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 export const StyledNavbar = styled.div`
     display: flex;
-    &.hidden {
+    &.collapsed {
         .vertical-navbar {
-            transform: translateX(-300px);
+            width: 93px;
         }
         .horizontal-navbar {
-            left: 0px;
-            width: 100%;
+            @media (min-width: ${(props) => props.theme.breakpoints.sm}) {
+                left: 93px;
+                width: calc(100% - 93px);
+            }
+            .menu-arrow {
+                transform: rotate(180deg);
+            }
         }
     }
 `;

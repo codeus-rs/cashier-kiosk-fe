@@ -5,8 +5,8 @@ const MyProfile: FunctionComponent = () => {
     const { t } = useTranslation();
 
     return (
-        <div>
-            <h1>{t('pages.myProfile.title')}</h1>
+        <div className="page">
+            <h3>{t('pages.myProfile.title')}</h3>
         </div>
     );
 };

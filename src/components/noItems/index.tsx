@@ -25,5 +25,5 @@ export default NoItems;
 const StyledNoItems = styled.div`
     min-width: 100%;
     text-align: center;
-    color: ${theme.palette.darkGray};
+    color: ${theme.palette.darkBgColor};
 `;

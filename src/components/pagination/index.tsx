@@ -42,9 +42,7 @@ const StyledWrapper = styled.div<Pick<Props, 'hideControls' | 'hideDisabled'>>`
             a {
                 min-width: 2rem;
                 min-height: 2rem;
-                border: 0.063rem solid ${(props) => props.theme.palette.gray};
                 border-radius: 0.5rem;
-                font-size: 1rem;
                 color: #000;
                 outline: none;
                 line-height: 1.68rem;
@@ -54,6 +52,8 @@ const StyledWrapper = styled.div<Pick<Props, 'hideControls' | 'hideDisabled'>>`
                 margin: 0 0.3rem;
                 user-select: none;
                 cursor: pointer;
+                border: 0.063rem solid transparent;
+                transition: ${(props) => props.theme.transition};
                 &.no-arrow {
                     display: none;
                 }
@@ -67,9 +67,8 @@ const StyledWrapper = styled.div<Pick<Props, 'hideControls' | 'hideDisabled'>>`
             }
             &.selected {
                 a {
-                    background: ${(props) => props.theme.palette.primary};
+                    background: ${(props) => props.theme.palette.darkBgColor};
                     color: #fff;
-                    border: 0.063rem solid ${(props) => props.theme.palette.primary};
                 }
             }
             &.disabled {
@@ -79,7 +78,7 @@ const StyledWrapper = styled.div<Pick<Props, 'hideControls' | 'hideDisabled'>>`
             &:hover:not(.selected, .disabled) {
                 a {
                     color: ${(props) => props.theme.palette.primary};
-                    border: 0.063rem solid ${(props) => props.theme.palette.primary};
+                    border: 0.063rem solid ${(props) => props.theme.palette.darkBgColor};
                 }
             }
         }

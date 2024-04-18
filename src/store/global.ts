@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-interface GlobalState {
-    isNavMenuVisible: boolean;
-}
+type GlobalState = {
+    isNavbarCollapsed: boolean;
+};
 
 const useGlobalState = create<GlobalState>((_set) => ({
-    isNavMenuVisible: true,
+    isNavbarCollapsed: false,
 }));
 
 export default useGlobalState;

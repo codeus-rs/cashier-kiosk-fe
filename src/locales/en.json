@@ -5,21 +5,25 @@
                 "title": "Dashboard"
             },
             "login": {
-                "title": "Login",
+                "title": "Log in",
                 "form": {
-                    "email": "Email",
-                    "password": "Password",
                     "button": "Login"
                 }
             },
             "forgotPassword": {
                 "title": "Forgot password"
             },
+            "resetPassword": {
+                "title": "Reset password"
+            },
             "myProfile": {
                 "title": "My profile"
             },
             "productManagement": {
-                "title": "Product Management"
+                "title": "Product Management",
+                "list": {
+                    "title": "Products"
+                }
             },
             "kioskManagement": {
                 "title": "Kiosk Management"
@@ -39,6 +43,14 @@
             "notFound": {
                 "title": "Not Found!"
             }
+        },
+        "buttons": {
+            "logout": "Logout"
+        },
+        "forms": {
+            "email": "Email",
+            "password": "Password",
+            "confirmPassword": "Confirm Password"
         },
         "validation": {
             "email": "Email is not valid",

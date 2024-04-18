@@ -1,0 +1,62 @@
+    $base-font-size: 16px;
+    $border-radius: 0.375rem;
+    $transition: all 0.3s ease-in-out;
+    $input-shadow:0px 3px 4px 0px rgba(70, 101, 67, 0.10);
+
+    // Colors
+    $primary:   #466543;
+    $secondary: #B0BCB0;
+    $tertiary: #71A06F;
+    $black:#1F2129;
+    $white:#ffffff;
+    $gray:#9D9D9D;
+    $error: #F26668;
+    $warning:#F0C644;
+    $success: $primary;
+    $border-color: $secondary;
+    $light-bg-color:#F9FBF8;
+    $dark-bg-color:#BAC6BA;
+
+    // Breakpoints
+    $xs: 25rem;
+    $sm: 35.5rem;
+    $md: 48rem;
+    $lg: 64rem;
+    $xl: 80rem;
+    $xxl: 120rem;
+    $xxxl: 160rem; 
+
+$variables:(
+    "baseFontSize": $base-font-size,
+    "borderRadius": $border-radius,
+    "transition": $transition,
+    "inputShadow": $input-shadow,
+    
+    "primary": $primary,
+    "secondary": $secondary,
+    "tertiary": $tertiary,
+    "black": $black,
+    "white": $white,
+    "gray": $gray,
+    "error": $error,
+    "warning": $warning,
+    "success": $success,
+    "borderColor": $border-color,
+    "lightBgColor": $light-bg-color,
+    "darkBgColor": $dark-bg-color,
+
+
+    'xs': $xs,
+    'sm': $sm,
+    'md': $md,
+    'lg': $lg,
+    'xl': $xl,
+    'xxl': $xxl,
+    'xxxl': $xxxl,
+);
+
+:export {
+    @each $var, $value in $variables {
+      #{(unquote($var))}: $value;
+    }
+}

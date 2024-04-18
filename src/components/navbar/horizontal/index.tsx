@@ -1,33 +1,43 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import useGlobalState from '@/store/global';
-import { ReactComponent as MenuIcon } from '@/assets/icons/navbar/hamburger.svg';
+import useOnClickOutside from '@/hooks/useOnClickOutside';
+import { ReactComponent as MenuIcon } from '@/assets/icons/navbar/menuArrow.svg';
 import { ReactComponent as UserIcon } from '@/assets/icons/navbar/user.svg';
-import { ReactComponent as ArrowIcon } from '@/assets/icons/navbar/arrow-down.svg';
 import { StyledHorizontalNavbar, StyledUserMenu, StyledUserDropdown } from './style';
 type Props = {
     className?: string;
 };
 const HorizontalNavbar: FunctionComponent<Props> = ({ className }) => {
-    const { isNavMenuVisible } = useGlobalState();
+    const ref = useRef<HTMLDivElement>(null);
+    const { t } = useTranslation();
+    const { isNavbarCollapsed } = useGlobalState();
 
     const [dropdown, setDropdown] = useState(false);
 
+    const handleCloseDropdown = (): void => {
+        setDropdown(false);
+    };
+
+    useOnClickOutside(ref, handleCloseDropdown);
+    console.log(isNavbarCollapsed);
     return (
         <StyledHorizontalNavbar className={className ?? className}>
-            <button onClick={() => useGlobalState.setState({ isNavMenuVisible: !isNavMenuVisible })}>
+            <button
+                className="menu-arrow"
+                onClick={() => useGlobalState.setState({ isNavbarCollapsed: !isNavbarCollapsed })}
+            >
                 <MenuIcon />
             </button>
-            <Link to="/">Organization name</Link>
             <StyledUserMenu>
                 <button onClick={() => setDropdown(!dropdown)}>
                     <UserIcon />
-                    Hi User
-                    <ArrowIcon />
                 </button>
                 <StyledUserDropdown className={dropdown ? 'visible' : 'hidden'}>
-                    <Link to="/my-profile">My profile</Link>
-                    <button>Logout</button>
+                    <h4>Hi User</h4>
+                    <Link to="/my-profile">{t('pages.myProfile.title')}</Link>
+                    <button>{t('buttons.logout')}</button>
                 </StyledUserDropdown>
             </StyledUserMenu>
         </StyledHorizontalNavbar>

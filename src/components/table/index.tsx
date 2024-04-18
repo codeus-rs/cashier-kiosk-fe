@@ -23,6 +23,7 @@ type Props<TData extends Object> = {
     handleEdit?: (item: TData) => void;
     handleDelete?: (item: TData) => void;
     customRowActions?: (item: TData) => ReactNode;
+    handleRowClick?: (item: TData) => ReactNode;
 };
 const Table = <TData extends Object>({
     items,
@@ -31,6 +32,7 @@ const Table = <TData extends Object>({
     handleEdit,
     handleDelete,
     customRowActions,
+    handleRowClick,
 }: Props<TData>): ReactElement => {
     const hasActions = handleEdit || handleDelete || customRowActions;
     return (
@@ -41,12 +43,12 @@ const Table = <TData extends Object>({
                         {columns.map(({ header }) => (
                             <th key={header}>{header}</th>
                         ))}
-                        {hasActions && <th>Actions</th>}
+                        {hasActions && <th className="actions">Actions</th>}
                     </tr>
                 </thead>
                 <tbody>
                     {items.map((item, index) => (
-                        <tr key={index}>
+                        <tr key={index} onClick={() => handleRowClick && handleRowClick(item)}>
                             {columns.map((column) => {
                                 return (
                                     <td key={column.header}>
@@ -80,27 +82,50 @@ const Table = <TData extends Object>({
 
 const StyledTable = styled.table`
     min-width: 100%;
-    tr {
-        border-top: 0.06rem solid ${(props) => props.theme.palette.gray};
-    }
+    border-radius: ${(props) => props.theme.borderRadius};
+    background: ${(props) => props.theme.palette.darkBgColor};
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+    font-size: 0.75rem;
     th,
     td {
-        padding: 0.5rem 0.25rem;
+        padding: 0.69rem 1.5rem;
     }
-    thead tr th {
-        text-align: start;
+
+    thead {
+        tr {
+            th {
+                text-align: start;
+                color: ${(props) => props.theme.palette.white};
+                &.actions {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
     }
-    thead tr {
-        border-bottom: 0.12rem solid ${(props) => props.theme.palette.gray};
+    tbody {
+        tr {
+            background: ${(props) => props.theme.palette.white};
+            &:nth-child(even) {
+                background: ${(props) => props.theme.palette.lightBgColor};
+            }
+            &:last-child {
+                border-radius: ${(props) => `0rem 0rem ${props.theme.borderRadius} ${props.theme.borderRadius}`};
+            }
+        }
     }
+
     margin-bottom: 1rem;
 `;
 
 const StyledActions = styled.td`
     display: flex;
-    gap: 0.25rem;
+    gap: 0.87rem;
     min-height: 100%;
     font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
 
     button:hover {
         opacity: 0.5;

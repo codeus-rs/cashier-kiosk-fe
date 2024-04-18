@@ -1,5 +1,4 @@
 import { ReactComponent as DownloadIcon } from '@/assets/icons/downloadIcon.svg';
-import { getCatFacts } from '@/communication/catFacts';
 import BackLink from '@/components/backLink';
 import Button from '@/components/buttons';
 import DragAndDrop from '@/components/dragAndDrop';
@@ -7,7 +6,7 @@ import InputField from '@/components/inputs/inputField';
 import Modal from '@/components/modal';
 import Pagination from '@/components/pagination';
 import Table from '@/components/table';
-import { useFetch } from '@/hooks/useFetch';
+// import { useFetch } from '@/hooks/useFetch';
 import useToggle from '@/hooks/useToggle';
 import { useTouchField } from '@/hooks/useTouchField';
 import useIsEmail from '@/hooks/validation/useIsEmail';
@@ -19,13 +18,12 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { Id, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { styled } from 'styled-components';
-
 import Skeleton from 'react-loading-skeleton';
 import NoItems from '@/components/noItems';
-import SelectField from '../../components/select';
-import DateField from '../../components/inputs/dateField';
-import RadioField from '../../components/inputs/radio';
-import CheckboxField from '../../components/inputs/checkbox';
+import SelectField from '@/components/select';
+import DateField from '@/components/inputs/dateField';
+import RadioField from '@/components/inputs/radio';
+import CheckboxField from '@/components/inputs/checkbox';
 interface FormValues {
     email: string;
     password: string;
@@ -36,9 +34,9 @@ const Typography: FunctionComponent = () => {
     const modal = useToggle();
     const [currentPage, setCurrentPage] = useState(1);
     const [files, setFiles] = useState(MOCK_FILES);
-    const { data, error, refetch, status } = useFetch({
-        queryFn: () => getCatFacts(),
-    });
+    // const { data, error, refetch, status } = useFetch({
+    //     queryFn: () => getCatFacts(),
+    // });
     const [formValues, setFormValues] = useState<FormValues>({
         email: '',
         password: '',
@@ -57,7 +55,7 @@ const Typography: FunctionComponent = () => {
     const isFormValid = !(emailErrorMessage || passwordErrorMessage || ageErrorMessage);
     const handleShowToast = (): Id => toast('Test toast', { position: 'bottom-left' });
     return (
-        <StyledTemplatePage>
+        <StyledTemplatePage className="page">
             <StyledGroup>
                 <form style={{ display: 'flex', gap: '1rem' }}>
                     <div>
@@ -111,19 +109,13 @@ const Typography: FunctionComponent = () => {
             </StyledGroup>
             <StyledGroup>
                 <StyledRow>
-                    <Button>Primary solid</Button>
-                    <Button color="secondary" variant="solid">
-                        Secondary solid
-                    </Button>
+                    <Button>Solid Variant</Button>
+                    <Button variant="solid">Solid Variant</Button>
                 </StyledRow>
                 <StyledRow>
-                    <Button variant="outlined">Primary outlined</Button>
-                    <Button color="secondary" variant="outlined">
-                        Secondary outlined
-                    </Button>
+                    <Button variant="outlined">Outlined Variant</Button>
+                    <Button variant="text">Text Variant</Button>
                 </StyledRow>
-                <Button color="error">Error</Button>
-                <Button color="gray">Gray</Button>
             </StyledGroup>
             <StyledGroup>
                 <StyledPaginationContainer>
@@ -156,11 +148,12 @@ const Typography: FunctionComponent = () => {
                 {status === 'loading' || status === 'refetching' ? (
                     <Skeleton count={3} width={300} />
                 ) : (
-                    <p style={{ flex: 1, minWidth: '100%' }}>{status === 'error' ? error?.message : data?.fact}</p>
+                    <></>
+                    // <p style={{ flex: 1, minWidth: '100%' }}>{status === 'error' ? error?.message : data?.fact}</p>
                 )}
 
                 <div style={{ flex: 1, minWidth: '100%' }}>
-                    <Button onClick={() => refetch()}>Refetch</Button>
+                    {/* <Button onClick={() => refetch()}>Refetch</Button> */}
                 </div>
             </StyledGroup>
             <StyledGroup>

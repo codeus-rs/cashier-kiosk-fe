@@ -1,14 +1,12 @@
 import { FunctionComponent } from 'react';
 import { Link as NavLink } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { Palette } from '@/types/theme';
-
 type Props = JSX.IntrinsicElements['button'] & {
     variant?: 'outlined' | 'solid' | 'text';
     href?: string;
-    color?: keyof Palette;
     className?: string;
     disabled?: boolean;
+    width?: string;
 };
 
 const Button: FunctionComponent<Props> = ({ href, children, ...buttonProps }) => {
@@ -23,31 +21,74 @@ const Button: FunctionComponent<Props> = ({ href, children, ...buttonProps }) =>
 
 Button.defaultProps = {
     variant: 'solid',
-    color: 'primary',
 };
 
+const getButtonBgColor = (variant: string, active?: 'active' | ''): string | any => {
+    switch (variant) {
+        case 'solid':
+            return active
+                ? (props: any) => {
+                      props.theme.palette.tertiary;
+                  }
+                : (props: any) =>
+                      `linear-gradient(246deg, ${props.theme.palette.tertiary} 0.59%, ${props.theme.palette.primary} 50.69%,  ${props.theme.palette.primary} 61.38%, ${props.theme.palette.tertiary} 96.41%)`;
+        case 'outlined':
+            return 'transparent';
+        case 'text':
+            return active ? `${(props: any) => props.theme.palette.color.tertiary}` : 'white';
+        default:
+            return active
+                ? (props: any) => props.theme.palette.tertiary
+                : (props: any) =>
+                      `linear-gradient(246deg, ${props.theme.palette.tertiary} 0.59%, ${props.theme.palette.primary} 50.69%,  ${props.theme.palette.primary} 61.38%, ${props.theme.palette.tertiary} 96.41%)`;
+    }
+};
+
+const getButtonColor = (variant: string, active?: 'active' | ''): string | any => {
+    switch (variant) {
+        case 'solid':
+            return active ? `${(props: any) => props.theme.palette.tertiary}` : 'white';
+        case 'outlined':
+            return (props: any) => props.theme.palette.black;
+        case 'text':
+            return (props: any) => props.theme.palette.primary;
+        default:
+            return 'white';
+    }
+};
 const StyledButton = styled.button<Props>`
-    max-width: fit-content;
+    width: ${(props) => (props.width ? props.width : 'fit-content')};
+    background: ${(props) => props.variant && getButtonBgColor(props.variant)};
+    color: ${(props) => props.variant && getButtonColor(props.variant)};
+    padding: 0.75rem 1rem;
+    border: ${(props) => (props.variant === 'outlined' ? `1px solid ${props.theme.palette.primary}` : 'none')};
+    border-radius: ${(props) => props.theme.borderRadius};
+    font-size: 1.125rem;
     cursor: pointer;
-    background-color: ${(props) =>
-        props.variant === 'solid' ? props.theme.palette[props.color ?? 'primary'] : 'white'};
-    color: ${(props) => (props.variant === 'solid' ? 'white' : props.theme.palette[props.color ?? 'primary'])};
-    padding: 0.5rem 1rem;
-    border: ${(props) =>
-        props.variant === 'outlined' || props.variant === 'solid'
-            ? `0.06rem solid ${props.theme.palette[props.color ?? 'primary']}`
-            : ''};
-    transition: all 0.4s;
-    border-radius: 0.5rem;
+    background-size: 200% 100%;
+    background-position: right;
+    transition:
+        background-size 0.5s ease-in-out,
+        transform 0.3s,
+        background-position 0.5s ease-in-out,
+        border 0.3s ease-in-out;
 
     &:hover {
-        opacity: 0.8;
-        background-color: ${(props) =>
-            props.variant !== 'solid' ? props.theme.palette[props.color ?? 'primary'] + '0F' : undefined};
+        border: ${(props) => (props.variant === 'outlined' ? `1px solid ${props.theme.palette.tertiary}` : 'none')};
+        background-position: left;
+    }
+
+    &:active {
+        border-color: ${(props) => props.variant && getButtonColor(props.variant, 'active')};
+        background: ${(props) => props.variant && getButtonBgColor(props.variant, 'active')};
+        color: ${(props) => props.variant && getButtonColor(props.variant, 'active')};
+        transform: scale(0.95);
     }
 
     &:disabled {
-        opacity: 0.5;
+        transform: none;
+        cursor: not-allowed;
+        background: rgba(170, 170, 170, 0.5);
     }
 `;
 

@@ -15,7 +15,7 @@ const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
         return () => {
             document.removeEventListener('click', handleClickOutside, true);
         };
-    }, []);
+    }, [outsideClickHandler]);
 
     return handleClickOutside;
 };
